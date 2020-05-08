@@ -1,9 +1,9 @@
 import React from "react";
-import { Text, StyleSheet, View, Button, TouchableOpacity } from "react-native";
+import { Text, StyleSheet, View, ScrollView, Button, TouchableOpacity } from "react-native";
 
 const HomeScreen = ({ navigation }) => {
   return (
-    <View>
+    <ScrollView>
       <Text style={styles.text}>Hi There</Text>
 
       {/* Used Touchable Opacity instead of buttton 
@@ -50,7 +50,13 @@ const HomeScreen = ({ navigation }) => {
           <Text style={styles.buttonText}>Go to Text Demo</Text>
         </View>
       </TouchableOpacity>
-    </View>
+
+      <TouchableOpacity onPress={() => navigation.navigate("Box")}>
+        <View style={styles.buttonStyle}>
+          <Text style={styles.buttonText}>Go to Box Demo</Text>
+        </View>
+      </TouchableOpacity>
+    </ScrollView>
   );
 };
 

@@ -32,7 +32,7 @@ export default function CreateScreen({ navigation }) {
       <TouchableOpacity
         onPress={() => {
           addBlogPost(title, content, () => {
-              navigation.navigate("Index");
+            navigation.navigate("Index");
           });
         }}
       >

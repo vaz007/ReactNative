@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import {
   Text,
   StyleSheet,
@@ -13,8 +13,25 @@ import { Feather } from "@expo/vector-icons";
 import { Context } from "../Context/BlogContext";
 
 const IndexScreen = ({ navigation }) => {
-  const { state, deleteBlogPost } = useContext(Context);
+  const { state, deleteBlogPost, getAllBlogs } = useContext(Context);
   // console.log(blogPost)
+
+  useEffect(() => {
+    getAllBlogs();
+
+    // refresh the screen whenever some new operation is done
+    // such as if you add a blog it will refresh the screen
+    const listener = navigation.addListener("didFocus", () => {
+      getAllBlogs();
+    });
+    // return the useEffect function with a function
+    // which will help prevent from memory leak
+    // will turnoff any listeners
+    return () => {
+      listener.remove();
+    };
+  }, []);
+
   return (
     <View>
       <FlatList
@@ -41,11 +58,13 @@ const IndexScreen = ({ navigation }) => {
   );
 };
 
-IndexScreen.navigationOptions = ({navigation}) => {
+IndexScreen.navigationOptions = ({ navigation }) => {
   return {
-    headerRight: <TouchableOpacity onPress = {() => navigation.navigate("Create")}>
-      <Feather name="plus" size={30} />
-    </TouchableOpacity>,
+    headerRight: (
+      <TouchableOpacity onPress={() => navigation.navigate("Create")}>
+        <Feather name="plus" size={30} />
+      </TouchableOpacity>
+    ),
   };
 };
 

@@ -12,4 +12,3 @@ export default function ImageDetail(props) {
 }
 
 const styles = StyleSheet.create({});
- 

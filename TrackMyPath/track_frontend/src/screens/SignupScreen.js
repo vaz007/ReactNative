@@ -1,42 +1,34 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { StyleSheet, View } from "react-native";
-import { Button, Text, Input } from "react-native-elements";
-import Spacer from "../components/Spacer";
-const SignupScreen = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+import { NavigationEvents } from "react-navigation";
 
+import AuthForm from "../components/AuthForm";
+import NavLink from "../components/NavLink";
+import Spacer from "../components/Spacer";
+
+import { Context as AuthContext } from "../context/AuthContex";
+
+const SignupScreen = () => {
+  const { state, signup, clearErrorMessage } = useContext(AuthContext);
   return (
     <View style={styles.container}>
-      <Spacer>
-        <Text h3>Sign Up Component</Text>
-      </Spacer>
+      {/* used to clear the error message once you go to sign in screen */}
+        <NavigationEvents 
+        onWillFocus = {clearErrorMessage}
+      />
+    
+      <AuthForm
+        headerText="Sign Up for Tracker"
+        errorMessage={state.errorMessage}
+        submitButtonText="Sign Up"
+        // take email & password from state of authForm and send it to the actions in authContext.js
+        onSubmit={({ email, password }) => signup({ email, password })}
+      />
+      <Spacer />
 
-      <Input
-        autoCapitalize="none"
-        autoCorrect={false}
-        label="Email"
-        value={email}
-        onChangeText={(text) => setEmail(text)}
-      />
-      <Spacer />
-      <Input
-        autoCapitalize="none"
-        autoCorrect={false}
-        secureTextEntry
-        label="Password"
-        value={password}
-        onChangeText={(text) => setPassword(text)}
-      />
-      <Spacer />
-      <Button
-        //  onPress={() => navigation.navigate("SignIn")}
-        title="Sign Up"
-      />
-      <Spacer />
-      <Button
-        onPress={() => navigation.navigate("SignIn")}
-        title="Go to Sign In Demo"
+      <NavLink
+        routeName="SignIn"
+        text="Already have an account? Sign in instead"
       />
       <Spacer />
     </View>
@@ -55,6 +47,9 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     marginBottom: 50,
     marginHorizontal: 20,
+  },
+  link: {
+    color: "blue",
   },
 });
 

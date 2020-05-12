@@ -2,9 +2,9 @@
   "devToolsPort": 19002,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 18060,
+  "packagerPid": 9076,
   "expoServerNgrokUrl": "https://zb-pm3.anonymous.track-frontend.exp.direct",
   "packagerNgrokUrl": "https://packager.zb-pm3.anonymous.track-frontend.exp.direct",
-  "ngrokPid": 5460,
+  "ngrokPid": 18364,
   "webpackServerPort": null
 }

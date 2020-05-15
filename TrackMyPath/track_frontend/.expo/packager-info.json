@@ -1,10 +1,10 @@
 {
-  "expoServerPort": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-  "packagerPort": null,
-  "packagerPid": null,
+  "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://q9-3vz.anonymous.track-frontend.exp.direct",
+  "packagerNgrokUrl": "https://packager.q9-3vz.anonymous.track-frontend.exp.direct",
+  "ngrokPid": 9136,
+  "packagerPort": 19001,
+  "packagerPid": 8368,
   "webpackServerPort": null,
   "devToolsPort": 19002
 }

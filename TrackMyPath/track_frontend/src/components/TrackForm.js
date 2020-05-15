@@ -4,16 +4,17 @@ import Spacer from "./Spacer";
 
 import { Context as LocationContext } from "../context/LocationContext";
 
+import useSaveTrack from "../hooks/useSaveTrack";
 export default function TrackForm() {
   const {
-    state: { name, recording },
+    state: { name, recording, locations },
     startRecording,
     stopRecording,
     changeTrackName,
-    locations
   } = useContext(LocationContext);
 
-  console.log("LOCTION LENGTH" , locations)
+  const [saveTrack] = useSaveTrack();
+
   return (
     <>
       <Spacer>
@@ -24,10 +25,14 @@ export default function TrackForm() {
         />
       </Spacer>
       {recording ? (
-        <Button title="Stop Recording" onPress={stopRecording} />
+        <Button title="Stop" onPress={stopRecording} />
       ) : (
-        <Button title="Start Recording" onPress={startRecording} />
+        <Button title="Start" onPress={startRecording} />
       )}
+      <Spacer />
+      {!recording && locations.length ? (
+        <Button title="Save Recording" onPress={saveTrack} />
+      ) : null}
     </>
   );
 }
